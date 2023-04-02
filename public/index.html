@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>Create a post</title>
+</head>
+<body>
+  <button id="create-a-post">Create a post</button>
+  <!-- <form id="sample-form" method="post" action="/insert">
+    <h1>Create Form</h1>
+    <section>
+      
+      <p>
+        <label for="user-fullname">
+          <span>name: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="name" />
+      </p>
+      <p>
+        <label for="user-mail">
+          <span>Lastname: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-mail" name="last_name" />
+      </p>
+      <p>
+        <label for="user-fullname">
+          <span>Location: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="location" />
+      </p>
+      <p>
+        <label for="user-fullname">
+          <span>Length:</span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="length" />
+      </p>
+      <p>
+        <label for="user-fullname">
+          <span>width: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="width" />
+      </p>
+      <p>
+        <label for="user-fullname">
+          <span>Price: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="price" />
+      </p>
+      <p>
+        <label for="user-fullname">
+          <span>Telephone: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="telephone" />
+      </p>
+      <p>
+        <label for="user-fullname">
+          <span>About: </span>
+          <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" id="user-fullname" name="about" />
+      </p>
+      <p><button type="submit">Submit Form</button></p>
+    </section>
+  </form> -->
+  <section  hidden id="create-row">
+    <p>Create a Post</p>
+    <label>Name:</label>
+    <input type="text" id="name-input">
+    <br>
+    <label>Last Name:</label>
+    <input type="text" id="lastname-input">
+    <br>
+    <label>Location:</label>
+    <input type="text" id="location-input">
+    <br>
+    <label>Length:</label>
+    <input type="text" id="length-input">
+    <br>
+    <label>Width:</label>
+    <input type="text" id="width-input">
+    <br>
+    <label>Price:</label>
+    <input type="text" id="price-input">
+    <br>
+    <label>Telephone:</label>
+    <input type="text" id="telephone-input">
+    <br>
+    <label>About:</label>
+    <input type="text" id="about-input">
+    <br>
+    <button id="create-row-btn">Create</button>
+   
+</section>
+<button hidden id="close-post-form">Close</button>
+  <table id="table">
+    <thead>
+      <th>Name</th>
+      <th>Lastname</th>
+     <th>Location</th>
+     <th>Length</th>
+     <th>width</th>
+     <th>Price</th>
+     <th>Telephone</th>
+     <th>About</th>
+     <th>Delete</th>
+     <th>Edit</th> 
+    </thead>
+    <!-- THE DATA IS INSIDE THIS tbody -->
+    <tbody></tbody> 
+  </table>
+<!-- This is the edit part of the post and update form  -->
+  <!-- <section hidden id="update-row">
+    <label>Name:</label>
+    <input type="text" id="update-name-input">
+    <label>LastName:</label>
+    <input type="text" id="update-lastname-input">
+    <label>Location:</label>
+    <input type="text" id="update-location-input">
+    <label>Length:</label>
+    <input type="text" id="update-length-input">
+    <label>Width:</label>
+    <input type="text" id="update-width-input">
+    <label>Price:</label>
+    <input type="text" id="update-price-input">
+    <label>Telephone:</label>
+    <input type="text" id="update-telephone-input">
+    <label>About:</label>
+    <input type="text" id="update-about-input">
+    <button id="update-row-btn">Update</button>
+</section> -->
+<section >
+
+
+<section hidden id="update-row">
+    <label>Name:</label>
+    <input type="text" id="update-name-input">
+    <br>
+    <label>Last Name:</label>
+    <input type="text" id="update-lastname-input">
+    <br>
+    <label>Location:</label>
+    <input type="text" id="update-location-input">
+    <br>
+    <label>Length:</label>
+    <input type="text" id="update-length-input">
+    <br>
+    <label>Width:</label>
+    <input type="text" id="update-width-input">
+    <br>
+    <label>Price:</label>
+    <input type="text" id="update-price-input">
+    <br>
+    <label>Telephone:</label>
+    <input type="text" id="update-telephone-input">
+    <br>
+    <label>About:</label>
+    <input type="text" id="update-about-input">
+    <br>
+    <button id="update-row-btn">Update</button>
+</section>
+<button hidden id="close-update-form">Close</button>
+ <script src="script.js"> </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+input{
+  margin: 10px;
+  border-radius: 20px;
+  background-color: aliceblue;
+  border-style: none;
+  padding: 10px;
+}
+button{
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgba(255, 0, 0, 0.95);
+  font-weight: bold;
+}
+button:hover{
+  cursor: pointer;
+}
