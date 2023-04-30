@@ -1,4 +1,4 @@
-This is the database code ( Using MySQL)
+This is the database code (Using MySQL)
 
 CREATE SCHEMA make_post ;
 CREATE TABLE make_post.posts (
