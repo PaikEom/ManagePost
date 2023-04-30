@@ -41,6 +41,9 @@ function handleEditRow(id){
   const closeUpdateForm = document.querySelector('#close-update-form');
   closeUpdateForm.hidden = false;
   document.querySelector('#update-name-input').dataset.id = id;
+  document.body.classList.add("overlay"); // Just added
+  const hiddingDiv = document.querySelector('#update-section-div'); // Just added
+  hiddingDiv.hidden = false; // Just added 
 }
 //to close the update form 
 const closeUpdate = document.querySelector('#close-update-form');
@@ -48,6 +51,9 @@ closeUpdate.onclick = function(){
   const update = document.querySelector('#update-row');
   update.hidden = true;
   closeUpdate.hidden = true;
+  document.body.classList.remove("overlay"); // just added
+  const hiddingDiv = document.querySelector('#update-section-div');
+  hiddingDiv.hidden = true;
 };
 // Sending the updated part to the back end 
 updateBtn.onclick = function() {
@@ -147,103 +153,7 @@ createBtn.onclick = function() {
   })
   .catch(error => console.log(error));
   
-  // hide the update form
-  // const updateSection = document.querySelector('#update-row');
-  // updateSection.hidden = true;
-  // location.reload();
 };
-//Get the form element by id
-// let postForm = document.getElementById("post-form");
-
-// // when we submit the stuff 
-// postForm.addEventListener("submit",async(e)=>{
-//   //preventing the browser default behavior, aka reload
-//   e.preventDefault();
-
-//   let form = e.currentTarget;
-
-  
-//     // form fields instance
-//     let formFields = new FormData(form)
-//     let formDataObject = Object.fromEntries(formFields.entries());
-//     fetch('/insert', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(formDataObject)
-//     })
-//     .then(response => {
-//       if (response.ok) {
-//         location.reload();
-//       } else {
-//         console.log('Error updating row');
-//       }
-//     })
-//     .catch(error => console.log(error));
-//     // calling postFormFieldsAsJson() fucntion to send the data 
-
-  
-
-// });
-
-// async function postFormFieldsAsJson({formData}){
-//   // creating an object from the form data entries 
-//   let formDataObject = Object.fromEntries(formData.entries());
-
-//   // Format the plain form data as Json
-//   // let formDataJsonString = JSON.stringify(formDataObject);
-
-//   //setting the fetch options 
-//   // let fetchOptions = {
-//   //   method: 'POST',
-
-//   //   headers: {
-//   //     "Content-Type": "application/json",
-//   //     // Accept: "application/json",
-//   //   },
-//   //   // Post request body as JSON string. 
-//   //   body: formDataJsonString,
-//   // };
-
-
-//   // //Get the response body as JSON
-//   // let res = await fetch(url,fetchOptions);
-
-//   // // checking for errors
-//   // if(!res.ok){
-//   //   let error = await res.text();
-//   //   throw new Error(error);
-//   // }
-//   // if(res.ok){
-//   //   location.reload();
-//   fetch('/insert', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(formDataObject)
-//   })
-//   .then(response => {
-//     if (response.ok) {
-//       location.reload();
-//     } else {
-//       console.log('Error updating row');
-//     }
-//   })
-//   .catch(error => console.log(error));
-  
-//   // hide the update form
-//   // const updateSection = document.querySelector('#update-row');
-//   // updateSection.hidden = true;
-//   // location.reload();
-//   }
-
-  
-
-
-
-
 
 // this function is used to load the backend data 
 function loadHTMLTable(data) {
@@ -272,4 +182,68 @@ function loadHTMLTable(data) {
   });
 
   table.innerHTML = tableHtml;
+}
+
+
+// to make the form pop up 
+document.body.addEventListener("click", function(event) {
+  if (event.target === document.body) {
+    // updateForm.classList.add("hidden");
+    const update = document.querySelector('#update-row');
+    update.hidden = true;
+    closeUpdate.hidden = true;
+    document.body.classList.remove("overlay");
+    const hiddingDiv = document.querySelector('#update-section-div');
+  hiddingDiv.hidden = true;
+  }
+});
+
+// Search functionality 
+function search() {
+  
+  var location = $("#location").val();
+  console.log(`hi`);
+  $.ajax({
+    url: "/search",
+    type: "GET",
+    data: { location: location },
+    dataType: "json",
+    success: function(results) {
+      var data = results.data;
+      var resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+      if (data.length == 0){
+
+      }
+      for (var i = 0; i < data.length; i++) {
+        var result = data[i];
+        var name = result.name;
+        var lastName = result.last_name;
+        var location = result.location;
+        var telephone = result.telephone;
+        var resultDiv = document.createElement("div");
+        var nameElement = document.createElement("p");
+        nameElement.innerHTML = "Name: " + name;
+        var lastNameElement = document.createElement("p");
+        lastNameElement.innerHTML = "Last name: " + lastName;
+        var locationElement = document.createElement("p");
+        locationElement.innerHTML = "Location: " + location;
+        var telephoneElement = document.createElement("p");
+        telephoneElement.innerHTML = "Telephone: " + telephone;
+        resultDiv.appendChild(nameElement);
+        resultDiv.appendChild(lastNameElement);
+        resultDiv.appendChild(locationElement);
+        resultDiv.appendChild(telephoneElement)
+        resultsDiv.appendChild(resultDiv);
+
+      }
+    },
+    
+    error: function(xhr, status, error) {
+      document.getElementById("results").innerHTML = "Error occurred while fetching data.";
+      console.log("Error: " + error);
+      $("#results").html("Error occurred while fetching data.");
+
+    }
+  });
 }

@@ -1,25 +1,24 @@
 const express = require('express');
 const app = express();
-// const cors = require('cors');
 const port = 3000;
 const database = require('./dbDATA');
-// app.use(cors());
+
 app.use(express.json()); // this is to let json know that is expecting a json
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
 
 // api implementation   
 app.get('/info',(req,res)=>{
-  const db = database.getdbFunctionsInstance();
-  
-  const result = db.gettingData();
 
+  const db = database.getdbFunctionsInstance();
+  const result = db.gettingData();
   result
   .then(data => res.json({data: data}))
   .catch(err => console.log(err));
 
 });
-// to send data to the back end, I need to fix this one since is not working as it should 
+
+// to insert data 
 app.post('/insert',(req,res)=>{
   const {name,last_name,location,length,width,price,telephone,about} = req.body;
 
@@ -46,6 +45,7 @@ app.patch('/update',(req , res)=>{
   .catch(err => console.log(err));
 
 })
+
 // This is to delete the posts
 app.delete('/delete/:id', (req,res)=>{
   const {id} = req.params;
@@ -58,23 +58,25 @@ app.delete('/delete/:id', (req,res)=>{
   .catch(err => console.log(err));
 
 })
+
+// to search 
+app.get("/search" ,(req,res)=>{
+  const location = req.query.location;
+  const db = database.getdbFunctionsInstance();
+  console.log(location, 'This is the location from the App.js');
+  const result = db.search(location);
+
+  result
+  .then (data =>res.json({data : data}))
+  .catch(err => console.log(err));
+})
+
 app.listen(port,()=> {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening at http://localhost:${port}`);
 });
 
 
 
 
-// {
-//   "name":"Jose",
-//   "last_name":"Criqui",
-//   "location":"New York",
-//   "length":"1",
-//   "width":"1",
-//   "price":"100",
-//   "telephone":"123456789",
-//   "about":"This is my parking spot"
 
-
-// }
 
